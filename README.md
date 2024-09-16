@@ -4,6 +4,6 @@
 # Trying to add precise tempo functionality.
 # Wanting to maybe convert this into a M4L instance, to add direct Ableton functionality.
 # Can go many different ways into development.
-
+# the "Master" app icon has yet to be implemented.
 # Cheers,
 # marcdub
