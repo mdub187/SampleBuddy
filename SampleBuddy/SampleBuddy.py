@@ -48,9 +48,9 @@ def export_audio_ffmpeg(input_file, output_file):
     subprocess.run(command)
 
 # importing images for the GUI layout
-image_play = './Wdgt/Play.ico'
-image_pause = './Wdgt/Pause.ico'
-image_stop = './Wdgt/Stop.ico'
+image_play = './Wdgt/Play.png'
+image_pause = './Wdgt/Pause.png'
+image_stop = './Wdgt/Stop.png'
 image_loop = './Wdgt/Loop.png'
 
 # GUI layout

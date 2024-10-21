@@ -1,0 +1,26 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+# Your branch is up to date with 'origin/main'.
+#
+# Changes to be committed:
+#	new file:   ../.DS_Store
+#	deleted:    ../README.md
+#	modified:   SampleBuddy.py
+#	new file:   Wdgt/.DS_Store
+#	deleted:    Wdgt/Loop.ico
+#	modified:   Wdgt/Loop.png
+#	deleted:    Wdgt/Loop.png~
+#	deleted:    Wdgt/MasterappICON.png
+#	deleted:    Wdgt/Pause.ico
+#	new file:   Wdgt/Pause.png
+#	deleted:    Wdgt/Play.ico
+#	new file:   Wdgt/Play.png
+#	deleted:    Wdgt/Speaker.ico
+#	deleted:    Wdgt/Stop.ico
+#	new file:   Wdgt/Stop.png
+#	deleted:    Wdgt/appICON.png
+#	new file:   __pycache__/__import.cpython-312.pyc
+cleaning up
