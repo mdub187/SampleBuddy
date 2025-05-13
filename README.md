@@ -7,3 +7,11 @@
 # the "Master" app icon has yet to be implemented.
 # Cheers,
 # marcdub
+
+
+## to install dependencies and run:
+** after cloning locally and cd in parent dir
+1) python -m venv sampleBuddy
+2) source venv/bin/activate
+3) pip freeze / && pip install -r requirements.txt
+4) pyhton SampleBuddy.py
