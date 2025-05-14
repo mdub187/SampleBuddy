@@ -1,4 +1,5 @@
-from imports import sg, mb
+from imports import sg 
+from menu_bar import mb
 from Wdgt import wdgt
 
 icons = wdgt()
@@ -8,7 +9,7 @@ stop = icons["stop"]
 loop = icons["loop"]
 
 layout = [
-    [sg.MenuBar(mb)],
+    [sg.Menu(mb)],
     [sg.Text("Select Directory:"), sg.Input(key="-DIR-", enable_events=True), sg.FolderBrowse()],
     [sg.Text("Search/Select Audio Files:"), sg.Input(key="-SEARCH-", enable_events=True)],
     [sg.Listbox(values=[], size=(60, 20), key="-FILE LIST-", enable_events=True)],

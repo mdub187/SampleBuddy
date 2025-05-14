@@ -1,4 +1,3 @@
-# audio_processing.py
 from imports import pydub
 
 import soundfile as sf

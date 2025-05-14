@@ -41,12 +41,6 @@ def export_audio_ffmpeg(input_file, output_file):
     command = ['ffmpeg', '-i', input_file, '-vn', output_file]
     subprocess.run(command)
 
-# importing images for the GUI layout
-# from Wdgt import __init__
-# image_play = 'play'
-# image_pause = 'pause'
-# image_stop = 'stop'
-# image_loop = 'loop'
 
 def create_window():
     from windowList import layout
@@ -129,6 +123,10 @@ while True:
         modified_file = change_tempo(current_file, tempo_factor)  # Create the new modified audio
         if pygame.mixer.music.get_busy():
             toggle_play_pause(modified_file, is_paused)  # Play the modified audio if already playing
+    if event == 'About':
+        sg.popup("SampleBuddy", "Version 1.0\nMade by Marc\nAll vibes, no bugs.")
+    elif event == 'Exit':
+        window.close()
 window.close()
 pygame.mixer.quit()
 

@@ -2,7 +2,6 @@ pyenv/
 bin/
 lib/
 __pycache__/
-Requirements
 pyvenv.cfg
 .DS_Store
 include/
