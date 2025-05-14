@@ -25,7 +25,7 @@ jobs:
         python-version: "3.12"
     - name: Install dependencies
       run: |
-        pip freeze 
+        pip freeze requirements.txt
         python -m pip install --upgrade pip
         pip install flake8 pytest
         pip install -r requirements.txt;
