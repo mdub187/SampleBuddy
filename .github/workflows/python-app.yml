@@ -25,7 +25,6 @@ jobs:
         python-version: "3.12"
     - name: Install dependencies
       run: |
-        cd SamepleBuddy
         pip freeze 
         python -m pip install --upgrade pip
         pip install flake8 pytest
