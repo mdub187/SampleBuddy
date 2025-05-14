@@ -1,7 +1,5 @@
-import PySimpleGUI as sg
-import pygame
-from pydub import AudioSegment
 from pydub.playback import play
+from imports import sg, AudioSegment, pygame, play
 
 # Initialize PyGame mixer
 pygame.mixer.init()
@@ -12,12 +10,6 @@ audio = AudioSegment.from_file('your_audio_sample.mp3')
 # Define a function to change the tempo
 def change_tempo(sound, speed=1.0):
     return sound.speedup(playback_speed=speed)
-
-# Define the layout with a tempo slider
-layout = [
-    # [sg.Button('Play'), sg.Button('Pause'), sg.Button('Stop')],
-    [sg.Text('Tempo'), sg.Slider(range=(0.5, 2.0), resolution=0.1, default_value=1.0, orientation='h', key='tempo_slider')],
-]
 
 window = sg.Window('Audio Player', layout)
 

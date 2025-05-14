@@ -5,7 +5,7 @@ import __main__
 import subprocess
 import PySimpleGUI as sg
 import pygame
-from pydub import AudioSegment
+from pydub import AudioSegment, playback
 import tempfile
 #import ffmpeg
 #import subprocess
