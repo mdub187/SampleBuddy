@@ -1,10 +1,4 @@
-import os
-import sys
-import subprocess
-import PySimpleGUI as sg
-import pygame
-from pydub import AudioSegment
-import tempfile
+from imports import *
 
 # Initialize Pygame Mixer for audio playback
 pygame.mixer.init()
@@ -48,26 +42,16 @@ def export_audio_ffmpeg(input_file, output_file):
     subprocess.run(command)
 
 # importing images for the GUI layout
-image_play = './Wdgt/Play.png'
-image_pause = './Wdgt/Pause.png'
-image_stop = './Wdgt/Stop.png'
-image_loop = './Wdgt/Loop.png'
+# from Wdgt import __init__
+# image_play = 'play'
+# image_pause = 'pause'
+# image_stop = 'stop'
+# image_loop = 'loop'
 
-# GUI layout
-layout = [
-    [sg.Text("Select Directory:"), sg.Input(key="-DIR-", enable_events=True), sg.FolderBrowse()],
-    [sg.Text("Search/Select Audio Files:"), sg.Input(key="-SEARCH-", enable_events=True)],
-    [sg.Listbox(values=[], size=(60, 20), key="-FILE LIST-", enable_events=True)],
-    [sg.Text("Volume")],
-    [sg.Slider(range=(0, 100), orientation='h', size=(20, 15), default_value=70, enable_events=True, key="-VOLUME-")],
-    [sg.Text("Tempo")],
-    [sg.Slider(range=(50, 150), orientation='h', size=(20, 15), default_value=100, enable_events=True, key="-TEMPO-")],
-    [sg.Button(key="-PLAY-", image_filename=image_play, image_size=(5, 5), pad=(0)), sg.Button(key="-PAUSE-", image_filename=image_pause, image_size=(.5, .5), pad=(1)), sg.Button(key="-STOP-", image_filename=image_stop, image_size=(5, 5), pad=(2)), sg.Button(key="-LOOP-", image_filename=image_loop, image_size=(5, 5), pad=(3))],
-    [sg.Button("Export")],
-]
-
-# Create the window
-window = sg.Window("Sample Buddy", layout, element_justification='c')
+def create_window():
+    from windowList import layout
+    return sg.Window("Audio Player", layout, element_justification='c', finalize=True)
+    
 
 # Event loop
 audio_files = []
@@ -75,12 +59,15 @@ is_paused = False
 is_looping = False  # Track loop state
 current_file = None
 modified_file = None
+audio_directory = None  # Initialize audio_directory to avoid undefined variable error
 
+window = create_window()
 while True:
     event, values = window.read()
-
     if event == sg.WINDOW_CLOSED or event == "Exit":
-        break
+        window.close()
+        pygame.mixer.quit()
+        sys.exit()
     elif event == "-DIR-":
         # Update the list of audio files when a directory is selected
         audio_directory = values["-DIR-"]
@@ -92,11 +79,14 @@ while True:
         filtered_files = search_files(search_term, audio_files)
         window["-FILE LIST-"].update(filtered_files)
     elif event == "-FILE LIST-":
-        selected_file = values["-FILE LIST-"][0]
-        full_path = os.path.join(audio_directory, selected_file)
-        window["-SEARCH-"].update(full_path)
-        current_file = full_path
-        modified_file = current_file  # Initially, no tempo adjustment
+        if audio_directory:  # Ensure audio_directory is defined
+            selected_file = values["-FILE LIST-"][0]
+            full_path = os.path.join(audio_directory, selected_file)
+            window["-SEARCH-"].update(full_path)
+            current_file = full_path
+            modified_file = current_file  # Initially, no tempo adjustment
+        else:
+            sg.popup_error("Please select a directory first")
     elif event == "-PLAY-":
         if modified_file and os.path.exists(modified_file):
             toggle_play_pause(modified_file, is_paused)
@@ -123,7 +113,6 @@ while True:
                 stop_audio()  # Stop the loop when toggled off
                 is_looping = False
                 window["-LOOP-"].update(button_color=("white", "gray"))  # Reset color when loop is off
-
     elif event == "Export":
         if current_file:
             # Get the output file path and call FFmpeg
@@ -131,17 +120,16 @@ while True:
             if output_file:
                 export_audio_ffmpeg(modified_file, output_file)
                 sg.popup(f"Audio exported to {output_file}")
-
     # Update the volume based on slider input
-    pygame.mixer.music.set_volume(values["-VOLUME-"] / 100)
-
+    if "-VOLUME-" in values:
+        pygame.mixer.music.set_volume(values["-VOLUME-"] / 100)
     # Update the tempo if the tempo slider is changed
     if current_file and event == "-TEMPO-":
         tempo_factor = values["-TEMPO-"] / 100.0  # 100% is normal speed
         modified_file = change_tempo(current_file, tempo_factor)  # Create the new modified audio
         if pygame.mixer.music.get_busy():
             toggle_play_pause(modified_file, is_paused)  # Play the modified audio if already playing
-
-# Close the window and quit pygame
 window.close()
 pygame.mixer.quit()
+
+# Close the window and quit pygame

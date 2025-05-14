@@ -15,7 +15,7 @@ def change_tempo(sound, speed=1.0):
 
 # Define the layout with a tempo slider
 layout = [
-    [sg.Button('Play'), sg.Button('Pause'), sg.Button('Stop')],
+    # [sg.Button('Play'), sg.Button('Pause'), sg.Button('Stop')],
     [sg.Text('Tempo'), sg.Slider(range=(0.5, 2.0), resolution=0.1, default_value=1.0, orientation='h', key='tempo_slider')],
 ]
 
