@@ -10,8 +10,12 @@
 
 
 ## to install dependencies and run:
-** after cloning locally and cd in parent dir
-1) python -m venv sampleBuddy
-2) source venv/bin/activate
-3) pip freeze / && pip install -r requirements.txt
-4) pyhton SampleBuddy.py
+** after cloning locally and cd in parent dir **
+1)
+## python -m venv sampleBuddy
+2)
+## source venv/bin/activate
+3)
+## pip freeze ./requirements.txt && pip install -r requirements.txt
+4)
+## python __init__.py
