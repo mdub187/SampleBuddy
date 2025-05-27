@@ -13,10 +13,6 @@ permissions:
   contents: write
 # name: 01 - Python Script Workflow
 
-on:
-  schedule:
-  - cron:
-  workflow_dispatch:
 
 jobs:
   build:
