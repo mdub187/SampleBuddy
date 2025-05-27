@@ -11,7 +11,7 @@ on:
 
 permissions:
   contents: write
-name: 01 - Python Script Workflow
+# name: 01 - Python Script Workflow
 
 on:
   schedule:
