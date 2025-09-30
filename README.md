@@ -10,7 +10,7 @@
 
 
 ## to install dependencies and run:
-** after cloning locally and cd in parent dir **
+after cloning locally and cd in parent dir
 1)
 ## python -m venv sampleBuddy
 2)
